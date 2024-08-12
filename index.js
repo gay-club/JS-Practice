@@ -379,6 +379,8 @@ f3000(12)
 */
 ///
 
+///
+/*
 function makeArmy() {
   let shooters = [];
 
@@ -401,3 +403,167 @@ let army = makeArmy();
 army[0](); // 10 от стрелка с порядковым номером 0
 army[1](); // 10 от стрелка с порядковым номером 1
 army[2](); // 10 ...и т.д.
+*/
+///
+
+///
+/*
+let user = {
+  firstName: "Вася"
+};
+
+function func(phrase) {
+  console.log(phrase + ', ' + this.firstName);
+}
+
+// привязка this к user
+let funcUser = func.bind(user);
+
+funcUser("Привет");
+*/
+///
+
+///
+/*
+function askPassword(ok, fail) {
+  let password = prompt("Password?", '');
+  if (password == "rockstar") ok();
+  else fail();
+}
+
+let user = {
+  name: 'Вася',
+
+  loginOk() {
+    console.log(`${this.name} logged in`);
+  },
+
+  loginFail() {
+    console.log(`${this.name} failed to log in`);
+  },
+
+};
+
+//askPassword(user.loginOk.bind(user), user.loginFail.bind(user));
+
+askPassword(() => {user.loginOk()}, () => {user.loginFail});
+*/
+///
+
+///
+/*
+function askPassword(ok, fail) {
+  let password = prompt("Password?", '');
+  if (password == "rockstar") ok();
+  else fail();
+}
+
+let user = {
+  name: 'John',
+
+  login(result) {
+    console.log( this.name + (result ? ' logged in' : ' failed to log in') );
+  }
+};
+
+///askPassword(user.login.bind(user, true), user.login.bind(user, false));
+
+askPassword(() => {user.login(true)}, () => {user.login(false)});
+*/
+///
+
+///
+/*
+function logPerson () {
+  console.log(`Person: ${this.name}, ${this.age}, ${this.job}`)
+}
+
+const person1 = {name: "Михаил", age:22, job: "FrontEnd"}
+
+function bind (person, func) {
+  return function () {
+    return func.call(person, ...arguments)
+  }
+}
+
+bind(person1, logPerson)()
+*/
+///
+
+/* Theme - Map and Set */
+
+///
+/*
+function unique (arr) {
+  return Array.from(new Set(arr))
+}
+
+let values = ["Hare", "Krishna", "Hare", "Krishna",
+  "Krishna", "Krishna", "Hare", "Hare", ":-O"
+];
+
+console.log(( unique(values) ))
+*/
+///
+
+///
+
+// function aclean (arr) {
+//   let arraySorted = [];
+//   for (let el of arr) {
+//     arraySorted.push(el.split("").sort().join("").toLowerCase())
+//   }
+
+//   let result = [];
+//   let set = new Set();
+
+//   for (let i = 0; i < arr.length; i++) {
+//     if (set.has(arraySorted[i]) == false) {
+//       result.push(arr[i])
+//     }
+//     set.add(arraySorted[i]);
+//   }
+
+//   return result;
+// }
+
+// function aclean (arr) {
+//   let mapOfArr = new Map()
+
+//   for (let el of arr) {
+//     mapOfArr.set(el, el.split("").sort().join("").toLowerCase())
+//   }
+//   arr = null;
+
+//   let result = [];
+//   let set = new Set();
+
+//   mapOfArr.forEach((value, key, map) => {
+//     if (set.has(value) == false) {
+//       result.push(key)
+//     }
+//     set.add(value);
+//   })
+
+//   return result;
+// }
+
+// let arr = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
+
+// console.log(aclean(arr))
+///
+
+///
+/*
+let map = new Map();
+
+map.set("name", "John");
+
+let keys = Array.from(map.keys());
+
+// Error: keys.push is not a function
+// Ошибка: keys.push -- это не функция
+keys.push("more");
+console.log(keys)
+*/
+///
