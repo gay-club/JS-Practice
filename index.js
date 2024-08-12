@@ -92,17 +92,15 @@ function showValue () {
 }
 
 function wrapper () {
+ let value = 3;
  console.log("wrapper " + value)
  
-  var value = 3
+
 
   showValue()
 }
 
 wrapper()
-
-
-console.log("value " + value)
 */
 ///
 
@@ -286,3 +284,120 @@ console.log(counter.decrease())
 ///
 
 
+///
+/*
+function printNumbers (from, to) {
+  let timer = setInterval(function () {
+    console.log(from++)
+    if (from > to) {
+      clearInterval(timer)
+    }
+  }, 1000)
+}
+
+printNumbers(3, 6)
+*/
+///
+
+
+///
+/*
+function printNumbers(from, to) {
+  if (from >= to) {
+    console.log(to)
+    return setTimeout(() => {
+      return to
+    }, 1000);
+
+  } 
+  console.log(from++)
+ return setTimeout(() => {
+
+  return printNumbers(from, to)
+}, 1000);
+}
+
+printNumbers(3, 6)
+*/
+///
+
+
+///
+/*
+function work(a, b) {
+  return a + b;
+  }
+
+
+function spy (func) {
+  let array = []
+
+  function result () {
+    array.push([...arguments])
+    
+    let res = func.call(this, ...arguments)
+    return res;
+  }
+
+  result.calls = array
+  
+  return result
+}
+
+work = spy(work);
+
+work(1, 2); // 3
+work(4, 5); // 9 
+
+for (let args of work.calls) {
+  console.log( 'call:' + args.join() ); // "call:1,2", "call:4,5"
+}
+*/
+///
+
+///
+/*
+function f(x) {
+  console.log(x);
+}
+
+function delay (func, delay) {
+
+  return function () {
+    setTimeout(() => {
+      let result = func.call(this, ...arguments)
+      return result
+    }, delay);
+
+  }
+}
+
+let f3000 = delay(f, 3000);
+let f1500 = delay(f, 1500);
+
+f3000(12)
+*/
+///
+
+function makeArmy() {
+  let shooters = [];
+
+  let i = 0;
+  while (i < 10) {
+    let shooter = function() { // функция shooter
+      console.log( i ); // должна выводить порядковый номер
+    };
+    shooters.push(shooter); // и добавлять стрелка в массив
+    i++;
+  }
+
+  // ...а в конце вернуть массив из всех стрелков
+  return shooters;
+}
+
+let army = makeArmy();
+
+// все стрелки выводят 10 вместо их порядковых номеров (0, 1, 2, 3...)
+army[0](); // 10 от стрелка с порядковым номером 0
+army[1](); // 10 от стрелка с порядковым номером 1
+army[2](); // 10 ...и т.д.
