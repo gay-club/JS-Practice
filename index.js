@@ -567,3 +567,78 @@ keys.push("more");
 console.log(keys)
 */
 ///
+
+///
+/*
+let salaries = {
+  "John": 100,
+  "Pete": 300,
+  "Mary": 250
+};
+
+
+function sumSalaries (obj) {
+  let sum = 0;
+  for (let value of Object.values(obj)) {
+    if (typeof(value) === "number") {
+      sum+= value
+    }
+  }
+  return sum;
+}
+
+console.log(sumSalaries(salaries))
+*/
+///
+
+///
+/*
+let user = {
+  name: 'John',
+  age: 30
+};
+
+function count (obj) {
+  return Object.entries(obj).length;
+}
+
+console.log(count(user))
+*/
+///
+
+///
+/*
+let user = {
+  name: "John",
+  years: 30
+};
+
+let {name, years : age, isAdmin = false} = user
+
+console.log( name ); 
+console.log( age );
+console.log( isAdmin );
+*/
+///
+
+let salaries = {
+  "John": 100,
+  "Pete": 300,
+  "Mary": 250
+};
+
+
+function topSalary (obj) {
+  let max = 0;
+  let name = null;
+  for (let [key, value] of Object.entries(obj)) {
+    if (max < value) {
+      name = key;
+      max = value
+    }
+    console.log(value)
+  }
+  return name;
+}
+
+console.log(topSalary(salaries))
