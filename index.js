@@ -17,7 +17,6 @@ console.log(sum(1, 2, 3))
 
 ///
 
-
 ///
 /*
 function sum (a, b, c) {
@@ -163,7 +162,6 @@ console.log( arr.filter(inArray([1, 2, 10])) )
 */
 ///
 
-
 ///
 /*
 let users = [
@@ -246,7 +244,6 @@ console.log(counter.decrease())
 */
 ///
 
-
 ///
 /*
 function makeCounter (a) {
@@ -283,7 +280,6 @@ console.log(counter.decrease())
 */
 ///
 
-
 ///
 /*
 function printNumbers (from, to) {
@@ -298,7 +294,6 @@ function printNumbers (from, to) {
 printNumbers(3, 6)
 */
 ///
-
 
 ///
 /*
@@ -320,7 +315,6 @@ function printNumbers(from, to) {
 printNumbers(3, 6)
 */
 ///
-
 
 ///
 /*
@@ -740,5 +734,40 @@ function go() {
     div.append("Hello, world!");
   });
 }
+*/
+///
+
+///
+/*
+let promise1 = new Promise((resolve) => setTimeout(() => resolve(2), 20));
+
+let promise2 = new Promise((resolve) => setTimeout(() => resolve(5), 60));
+
+var addTwoPromises = async function (promise1, promise2) {
+  // let res1 = await promise1.then(function (res) {
+  //   return res
+  // });
+
+  // let res2 = await promise2.then(function (res) {
+  //   return res
+  // });
+
+  // return res1 + res2;
+  return await promise1 + await promise2;
+};
+
+let res = addTwoPromises(promise1, promise2)
+
+console.log(res);
+*/
+///
+
+///
+/*
+function doItAFter (sec) {
+  return new Promise (resolve => setTimeout(resolve, sec * 1000))
+}
+
+doItAFter(3).then(() => console.log('dasdasdas'))
 */
 ///
