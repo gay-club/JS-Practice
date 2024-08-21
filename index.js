@@ -916,6 +916,8 @@ for (let el of document.querySelectorAll("[href]")) {
 */
 ///
 
+///
+/*
 const list = document.querySelector(".list")
 
 let isHidden = true;
@@ -934,3 +936,33 @@ document.querySelector(".title").addEventListener("click", function () {
     isHidden = true
   }
 })
+*/
+///
+
+///
+/*
+DO IT LATER
+const ball = document.querySelector("#ball")
+
+const field = document.querySelector("#field")
+
+field.addEventListener("click", (event) => {
+  const fieldData = field.getBoundingClientRect()
+  const leftStyle = event.clientX - (ball.naturalWidth / 2)
+  const rightStyle = event.clientY - ((ball.naturalHeight / 2))
+
+  console.log(fieldData)
+  console.log(leftStyle + " leftStyle")
+  console.log(rightStyle + " rightStyle")
+
+  if (leftStyle >= fieldData.x && rightStyle >= fieldData.y) {
+    ball.style.left = leftStyle + "px"; 
+    ball.style.top = rightStyle + "px"; 
+  } else {
+    console.log("WORKED")
+    ball.style.left = 100 + "px"; 
+    ball.style.top = 100 + "px"; 
+  }
+})
+*/
+///
