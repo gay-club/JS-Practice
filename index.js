@@ -870,3 +870,67 @@ function f() {
 console.log(f())
 */
 ///
+
+///
+/*
+async function getUsers(names) {
+  let result = [];
+  for (let name of names) {
+    let response = await fetch(`https://api.github.com/users/${name}`);
+    let user = await response.json();
+    if (user.message == "Not Found") {
+      result.push(null) 
+    } else {
+      result.push(user)
+    }
+  }
+  return result;
+}
+
+console.log(getUsers(["iliakan", "remy", "no.such.users"]))
+
+
+async function test () {
+  let users = await getUsers(['iliakan', 'remy', 'no.such.users']);
+  assert.equal(users[0].login, 'iliakan');
+  console.log(users[1].login);
+  console.log(users[2]);
+}
+
+test()
+*/
+///
+
+///
+/*
+console.log(
+  document.querySelector("[data-widget-name]").getAttribute("data-widget-name")
+);
+
+for (let el of document.querySelectorAll("[href]")) {
+  if (/\:\/\//.test(el.getAttribute("href")) 
+    && !/http\:\/\/internal\.com/.test(el.getAttribute("href"))) {
+    el.style.color = "orange";
+  }
+}
+*/
+///
+
+const list = document.querySelector(".list")
+
+let isHidden = true;
+
+document.querySelector(".title").addEventListener("click", function () {
+  
+  if (isHidden) {
+    list.style.visibility = "visible"
+    document.querySelector(".to_open").style.display = "none"
+    document.querySelector(".to_close").style.display = "inline"
+    isHidden = false
+  } else {
+    list.style.visibility = "hidden"
+    document.querySelector(".to_open").style.display = "inline"
+    document.querySelector(".to_close").style.display = "none"
+    isHidden = true
+  }
+})
