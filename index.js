@@ -966,3 +966,46 @@ field.addEventListener("click", (event) => {
 })
 */
 ///
+
+
+document.querySelector("#grid").addEventListener("click", (event) => {
+  let target = event.target.dataset.type;
+
+  if (!target) return;
+  const index = event.target.cellIndex;
+
+  let rows = document
+    .querySelector("#grid")
+    .querySelector("tbody")
+    .querySelectorAll("tr");
+  rows = Array.from(rows)
+
+  if (target == "string") {
+    rows.sort((a, b) => {
+      if (a.children[index].textContent > b.children[index].textContent) {
+        return 1;
+      }
+      if (a.children[index].textContent < b.children[index].textContent) {
+        return -1;
+      }
+      return 0;
+    })
+  } else if (target == "number") {
+    rows.sort((a, b) => {
+      return a.children[index].textContent - b.children[index].textContent;
+    })
+  } else {
+    return 0;
+  }
+
+  document
+  .querySelector("#grid")
+  .querySelector("tbody")
+  .replaceWith(document.createElement("tbody"))
+
+  document
+  .querySelector("#grid")
+  .querySelector("tbody")
+  .append(...rows)
+
+});
