@@ -967,7 +967,8 @@ field.addEventListener("click", (event) => {
 */
 ///
 
-
+///
+/*
 document.querySelector("#grid").addEventListener("click", (event) => {
   let target = event.target.dataset.type;
 
@@ -978,6 +979,7 @@ document.querySelector("#grid").addEventListener("click", (event) => {
     .querySelector("#grid")
     .querySelector("tbody")
     .querySelectorAll("tr");
+
   rows = Array.from(rows)
 
   if (target == "string") {
@@ -1001,11 +1003,37 @@ document.querySelector("#grid").addEventListener("click", (event) => {
   document
   .querySelector("#grid")
   .querySelector("tbody")
-  .replaceWith(document.createElement("tbody"))
-
-  document
-  .querySelector("#grid")
-  .querySelector("tbody")
   .append(...rows)
-
 });
+*/
+///
+
+
+///
+/*
+document.querySelector("#contents").addEventListener("click", (event) => {
+  if (event.target.nodeName != "A" && event.target.parentNode.nodeName != "A")
+    return;
+  let agreeResult = confirm(`Leave for ${event.target.getAttribute("href")}`);
+  if (!agreeResult) {
+    event.preventDefault();
+  }
+});
+*/
+///
+
+///
+/*
+document.querySelector("#thumbs").addEventListener("click", event => {
+  event.preventDefault()
+  console.log(event.target.nodeName)
+  if (event.target.nodeName != "IMG" && event.target.nodeName != "A") return
+  
+  if (event.target.nodeName == "IMG" ) {
+    document.querySelector("#largeImg").src = event.target.parentNode.href
+  } else {
+    document.querySelector("#largeImg").src = event.target.href
+  }
+})
+*/
+///
