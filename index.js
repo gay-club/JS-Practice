@@ -1067,7 +1067,7 @@ document.querySelector("#ul").addEventListener("click", (event) => {
 
 
 ///
-/*
+
 document.addEventListener("mouseover", event => {
   if (!event.target.dataset.tooltip) return;
 
@@ -1077,15 +1077,26 @@ document.addEventListener("mouseover", event => {
   span.innerHTML = text
   span.classList.add("tooltip")
 
-  event.target.before(span);
+  document.body.append(span);
   
-  console.log(span)
+  let coords = event.target.getBoundingClientRect()
+  console.log(coords)
+  let left = coords.left + (event.target.offsetWidth - span.offsetWidth) / 2
+  if (left < 0) left = 0;
+ 
+
+  let top = coords.top - span.offsetHeight - 5;
+  if (top < 0) top = coords.top + event.target.offsetHeight + 5;
+
+   span.style.left = left + "px"
+    span.style.top = top + "px"
 })
 
 
 document.addEventListener("mouseout", event => {
-  if (event.relatedTarget.dataset.tooltip) return
-  console.log(312312)
+  if (!event.target.dataset.tooltip) return
+  document.querySelector(".tooltip").remove()
+
 })
-*/
+
 ///

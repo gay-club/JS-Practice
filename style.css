@@ -83,6 +83,11 @@
     cursor: pointer;
   } */
 
+
+
+
+
+
   body {
     height: 2000px;
     /* добавим body прокрутку, подсказка должна работать и с прокруткой */
@@ -100,5 +105,4 @@
     color: #333;
     background: #fff;
     box-shadow: 3px 3px 3px rgba(0, 0, 0, .3);
-    display: none;
   }
