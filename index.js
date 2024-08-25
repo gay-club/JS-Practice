@@ -1008,7 +1008,6 @@ document.querySelector("#grid").addEventListener("click", (event) => {
 */
 ///
 
-
 ///
 /*
 document.querySelector("#contents").addEventListener("click", (event) => {
@@ -1034,6 +1033,59 @@ document.querySelector("#thumbs").addEventListener("click", event => {
   } else {
     document.querySelector("#largeImg").src = event.target.href
   }
+})
+*/
+///
+
+///
+/*
+document.querySelector("#ul").addEventListener("mousedown", (event) => {
+  event.preventDefault();
+});
+
+document.querySelector("#ul").addEventListener("click", (event) => {
+  if (event.target.nodeName != "LI") return;
+
+  let element = event.target;
+  let listItems = document.querySelector("#ul").querySelectorAll("li");
+
+  if (!event.ctrlKey && !event.metaKey) {
+    for (let item of listItems) {
+      item.classList.remove("selected");
+    }
+    element.classList.add("selected");
+  } else {
+    if (!element.classList.contains("selected")) {
+      element.classList.add("selected");
+    } else {
+      element.classList.remove("selected");
+    }
+  }
+});
+*/
+///
+
+
+///
+/*
+document.addEventListener("mouseover", event => {
+  if (!event.target.dataset.tooltip) return;
+
+  const text = event.target.dataset.tooltip
+
+  let span = document.createElement("span")
+  span.innerHTML = text
+  span.classList.add("tooltip")
+
+  event.target.before(span);
+  
+  console.log(span)
+})
+
+
+document.addEventListener("mouseout", event => {
+  if (event.relatedTarget.dataset.tooltip) return
+  console.log(312312)
 })
 */
 ///
