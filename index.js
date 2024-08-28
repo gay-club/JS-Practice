@@ -1065,9 +1065,8 @@ document.querySelector("#ul").addEventListener("click", (event) => {
 */
 ///
 
-
 ///
-
+/*
 document.addEventListener("mouseover", event => {
   if (!event.target.dataset.tooltip) return;
 
@@ -1080,7 +1079,6 @@ document.addEventListener("mouseover", event => {
   document.body.append(span);
   
   let coords = event.target.getBoundingClientRect()
-  console.log(coords)
   let left = coords.left + (event.target.offsetWidth - span.offsetWidth) / 2
   if (left < 0) left = 0;
  
@@ -1098,5 +1096,56 @@ document.addEventListener("mouseout", event => {
   document.querySelector(".tooltip").remove()
 
 })
-
+*/
 ///
+
+let currentElem = null;
+
+document.querySelector("#house").addEventListener("mouseover", (event) => {
+  if (currentElem) return;
+
+  let target = event.target.closest("[data-tooltip]");
+
+  if (!target) return;
+
+  currentElem = target;
+
+  if (document.querySelector(".tooltip"))
+    document.querySelector(".tooltip").remove();
+
+  let span = document.createElement("span");
+  span.classList.add("tooltip");
+  span.innerHTML = target.dataset.tooltip;
+
+  document.body.append(span);
+
+  let coords = currentElem.getBoundingClientRect();
+  let left = coords.left + (event.target.offsetWidth - span.offsetWidth) / 2;
+  if (left < 0) left = 0;
+
+  let top = coords.top - span.offsetHeight - 5;
+  if (top < 0) top = coords.top + event.target.offsetHeight + 5;
+
+  span.style.left = left + "px";
+  span.style.top = top + "px";
+});
+
+document.querySelector("#house").addEventListener("mouseout", (event) => {
+  if (!currentElem) return;
+
+  let relatedTarget = event.relatedTarget;
+
+  if (relatedTarget == currentElem) return;
+
+  if (relatedTarget.dataset.tooltip) {
+    currentElem = null;
+    return;
+  }
+
+  while (relatedTarget) {
+    if (relatedTarget == currentElem) return;
+    relatedTarget = relatedTarget.parentNode;
+  }
+
+  currentElem = null;
+});
