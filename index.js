@@ -1099,6 +1099,8 @@ document.addEventListener("mouseout", event => {
 */
 ///
 
+///
+/*
 let currentElem = null;
 
 document.querySelector("#house").addEventListener("mouseover", (event) => {
@@ -1149,3 +1151,120 @@ document.querySelector("#house").addEventListener("mouseout", (event) => {
 
   currentElem = null;
 });
+*/
+///
+
+///
+/*
+const thumb = document.querySelector(".thumb")
+thumb.onmousedown = function (event) {
+  let shiftX = event.clientX - thumb.getBoundingClientRect().left;
+  thumb.style.zIndex = 1000;
+  document.querySelector("#slider").append(thumb);
+
+  moveAt(event.pageX);
+
+  function moveAt(pageX) {
+    thumb.style.left = pageX - shiftX - 13 + 'px';
+  }
+
+  function onMouseMove(event) {
+    moveAt(event.pageX);
+
+    let width = document.querySelector("#slider").getBoundingClientRect().width - thumb.offsetWidth
+    if (parseInt(thumb.style.left) >= width) {
+      thumb.style.left =  width + "px"
+    } else if (parseInt(thumb.style.left) <= 0) {
+      thumb.style.left =  0 + "px"
+    }
+  }
+
+  document.addEventListener('mousemove', onMouseMove);
+
+  document.onmouseup = function () {
+    document.removeEventListener('mousemove', onMouseMove);
+    thumb.onmouseup = null;
+  };
+};
+
+thumb.ondragstart = function() {
+  return false;
+};
+*/
+///
+
+
+///
+/*
+function runOnKeys (func, ...keys) {
+  let arr = [];
+  function getKeys (event) {
+    arr.push(event.code)
+    if (arr.toString().includes(keys.toString()) ) {
+      arr = [];
+      let result = func()
+      return result
+    }
+  }
+  document.addEventListener("keydown", getKeys)
+}
+
+
+runOnKeys(() => console.log(432534), "KeyQ", "KeyW")
+*/
+///
+
+function toSpy (a) {
+  return a + 10;
+}
+
+function spy (func) {
+  let count = 0;
+  let map = new Map();
+  function returnedFunction (...args) {
+    let result = func(...args)
+    map.set(args.join(' '), result)
+    count++;
+
+
+    returnedFunction.callCount = () => {
+      return count;
+    }
+
+    returnedFunction.beenCalledWith = (...arg) => {
+      for (let key of map.keys()) {
+        if (arg.join(' ') == key) {
+          return true;
+        }
+      }
+      return false;
+    }
+
+    returnedFunction.hasBeenReturnedWith = (arg) => {
+      for (let value of map.values()) {
+        if (arg == value) {
+          return true;
+        }
+      }
+      return false;
+    }
+
+    return result;
+  }
+  return returnedFunction;
+}
+
+const spiedFunc = spy(toSpy)
+
+console.log(spiedFunc(1))
+console.log(spiedFunc(2))
+console.log(spiedFunc(3))
+
+console.log(spiedFunc.callCount() + " callCount")
+
+console.log(spiedFunc.beenCalledWith(2))
+console.log(spiedFunc.beenCalledWith(100))
+
+
+console.log(spiedFunc.hasBeenReturnedWith(12))
+console.log(spiedFunc.hasBeenReturnedWith(0))
