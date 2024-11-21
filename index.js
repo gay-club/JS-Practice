@@ -1,4 +1,95 @@
 "use strict";
+class NerdLove {
+  constructor(options = {}) {
+    this.compliments = options.compliments || false;
+    this.sassLevel = options.sassLevel || 'mild';
+    this.autoFlirt = options.autoFlirt || false;
+    this._confidenceLevel = 0; // Private, because confidence grows with time 🥹
+  }
+
+  /**
+   * Initiates a nerdy interaction.
+   * @param {Function} callback - A function to handle the response.
+   */
+  initiateInteraction(callback) {
+    console.log("Initializing interaction... 🤓");
+
+    const nerdyPickupLines = [
+      "Are you an API? Because you’re just what I’ve been calling for. 😏",
+      "Are you a breakpoint? Because you make everything stop for me. 🛑",
+      "You must be JavaScript, because you’ve got me wrapped up in your promises. 🫦",
+    ];
+
+    const chosenLine = nerdyPickupLines[Math.floor(Math.random() * nerdyPickupLines.length)];
+
+    if (this.autoFlirt) {
+      console.log(`Auto-Flirt Activated: "${chosenLine}"`);
+      callback('🥰');
+    } else {
+      console.log("Waiting for user input... 🫣");
+      callback('🥺');
+    }
+  }
+
+  /**
+   * Boosts the confidence level.
+   * @param {number} amount - The amount to boost confidence.
+   */
+  boostConfidence(amount = 1) {
+    this._confidenceLevel += amount;
+    console.log(`Confidence level increased to ${this._confidenceLevel}. Feeling daring! 😏`);
+  }
+
+  /**
+   * Shares a compliment (if enabled).
+   */
+  shareCompliment() {
+    if (!this.compliments) {
+      console.log("Compliments are disabled. Shyness detected. 🫣");
+      return;
+    }
+
+    const compliments = [
+      "Your logic is flawless. 🧠✨",
+      "Your syntax? Chef’s kiss. 👨‍🍳💋",
+      "I could debug your errors forever. ❤️",
+    ];
+
+    const chosenCompliment = compliments[Math.floor(Math.random() * compliments.length)];
+    console.log(`Compliment: "${chosenCompliment}"`);
+  }
+
+  /**
+   * Adjusts sass level dynamically.
+   * @param {string} level - New sass level ('mild', 'spicy', or 'feral').
+   */
+  adjustSassLevel(level) {
+    const validLevels = ['mild', 'spicy', 'feral'];
+    if (!validLevels.includes(level)) {
+      console.warn("Invalid sass level! Defaulting to 'mild'. 🧐");
+      this.sassLevel = 'mild';
+      return;
+    }
+
+    this.sassLevel = level;
+    console.log(`Sass level set to '${this.sassLevel}'. Watch out, world. 💅`);
+  }
+}
+
+const nerd = new NerdLove({ compliments: true, sassLevel: 'spicy', autoFlirt: true });
+nerd.initiateInteraction((response) => console.log(`Response received: ${response}`));
+nerd.shareCompliment();
+nerd.boostConfidence(5);
+nerd.adjustSassLevel('feral');
+
+nerd.initiateInteraction((response) => {
+  if (response === '🥺') {
+    console.log('I see you’re shy. Don’t worry, me too.');
+  } else {
+    console.log('Connection established. Let’s geek out together. 😏✨');
+  }
+});
+
 
 ///
 
